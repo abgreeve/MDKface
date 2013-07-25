@@ -1,0 +1,35 @@
+close failed in file object destructor:
+sys.excepthook is missing
+lost sys.stderr
+Traceback (most recent call last):
+  File "/usr/local/bin/mdk", line 89, in <module>
+    Cmd = cls(C)
+  File "/opt/moodle-sdk/lib/command.py", line 57, in __init__
+    self.__Wp = workplace.Workplace()
+  File "/opt/moodle-sdk/lib/workplace.py", line 53, in __init__
+    raise Exception('Directory %s not found' % self.path)
+Exception: Directory /var/www/moodles not found
+Traceback (most recent call last):
+  File "/usr/local/bin/mdk", line 89, in <module>
+    Cmd = cls(C)
+  File "/opt/moodle-sdk/lib/command.py", line 57, in __init__
+    self.__Wp = workplace.Workplace()
+  File "/opt/moodle-sdk/lib/workplace.py", line 53, in __init__
+    raise Exception('Directory %s not found' % self.path)
+Exception: Directory /var/www/moodles not found
+Traceback (most recent call last):
+  File "/usr/local/bin/mdk", line 89, in <module>
+    Cmd = cls(C)
+  File "/opt/moodle-sdk/lib/command.py", line 57, in __init__
+    self.__Wp = workplace.Workplace()
+  File "/opt/moodle-sdk/lib/workplace.py", line 53, in __init__
+    raise Exception('Directory %s not found' % self.path)
+Exception: Directory /var/www/moodles not found
+Traceback (most recent call last):
+  File "/usr/local/bin/mdk", line 89, in <module>
+    Cmd = cls(C)
+  File "/opt/moodle-sdk/lib/command.py", line 57, in __init__
+    self.__Wp = workplace.Workplace()
+  File "/opt/moodle-sdk/lib/workplace.py", line 53, in __init__
+    raise Exception('Directory %s not found' % self.path)
+Exception: Directory /var/www/moodles not found
