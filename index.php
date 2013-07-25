@@ -3,8 +3,9 @@
     include '/home/adrian/moodles/web/lib/mdk-class.php';
 
     $mdk = new mdk();
-    $output = $mdk->run_command('mdk info', '/home/adrian/moodles/stable_master_postgres/moodle/');
-    echo nl2br($output);
+    $version = $mdk->get_version();
+    // $output = $mdk->run_command('mdk info', '/home/adrian/moodles/stable_master_postgres/moodle/');
+    // echo nl2br($output);
 
 
 
@@ -16,9 +17,11 @@
 	</head>
 	<body>
         <a href="http://www.moodle.org"><img src="pics/moodle.jpg"></a>
+        <br />
+        <p><?php echo $version; ?><img src="pics/mdk-small.png"></p>
 		<h2>Stable</h2>
 		<ul>
-			<li><a href="http://adrian.moodle.local/stable_master_postgres/">Stable Master (Postgres)</a></li>
+			<li><a href="http://adrian.moodle.local/stable_master_postgres/">Stable Master (Postgres)</a> <a href="info/view.php">Info page</a></li>
 			<li><a href="http://adrian.moodle.local/stable_25_postgres/">Stable 25 (Postgres)</a></li>
 			<li><a href="http://adrian.moodle.local/stable_24_postgres/">Stable 24 (Postgres)</a></li>
 		</ul>

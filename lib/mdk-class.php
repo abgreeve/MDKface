@@ -26,4 +26,24 @@ class mdk {
         proc_close($resource);
         return $cmdoutput;
     }
+
+    function get_version() {
+        return self::run_command('mdk -v');
+    }
+
+    function get_status($branchlocation) {
+        return self::run_command('git status', $branchlocation);
+    }
+
+    function get_branches($branchlocation) {
+        $rawbranches = self::run_command('git branch', $branchlocation);
+        $branches = explode(' ', $rawbranches);
+        $branches = array_filter($branches);
+        return $branches;
+    }
+
+    function change_branch($name, $location) {
+        $cmd = 'git checkout ' . $name;
+        $notused = self::run_command($cmd, $location);
+    }
 }
