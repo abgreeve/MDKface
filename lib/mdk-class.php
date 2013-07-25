@@ -46,4 +46,8 @@ class mdk {
         $cmd = 'git checkout ' . $name;
         $notused = self::run_command($cmd, $location);
     }
+
+    function get_moodle_instances() {
+        return self::run_command('mdk info --list');
+    }
 }

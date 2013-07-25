@@ -1,9 +1,15 @@
 <?php
 
     include '/home/adrian/moodles/web/lib/mdk-class.php';
+    include '/home/adrian/moodles/web/lib/general.php';
 
     $mdk = new mdk();
     $version = $mdk->get_version();
+
+    $instances = $mdk->get_moodle_instances();
+    echo '<pre>';
+    print_r($instances);
+    echo '</pre>';
     // $output = $mdk->run_command('mdk info', '/home/adrian/moodles/stable_master_postgres/moodle/');
     // echo nl2br($output);
 
