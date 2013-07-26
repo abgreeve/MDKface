@@ -1,10 +1,14 @@
 <?php
+// include '../../config.php';
+// require_once   '../' . basename(__DIR__) . '/config.php';
 
 class mdk {
 
 
 
     function run_command($command, $dir = null) {
+
+        // echo 'Something: ' . $mdkinstancelocation;
         $pipes = array();
         $descriptorspec = array();
         $descriptorspec[] = array('pipe', 'r');
@@ -57,5 +61,15 @@ class mdk {
         }
         $instances = array_filter($instances);
         return $instances;
+    }
+
+    static function get_dbinfo($instancelocation) {
+        $databasevars = array('dbhost', 'dbname', 'dbpass', 'dbtype', 'dbuser');
+        $databaseinfo = array();
+        foreach ($databasevars as $value) {
+            $command = 'mdk info --var ' . $value;
+            $databaseinfo[$value] = self::run_command($command, $instancelocation);
+        }
+        return $databaseinfo;
     }
 }
