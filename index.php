@@ -9,9 +9,13 @@
 
 // with mdk:
     $instances = mdk::get_moodle_instances();
+
+
+    // $branches = mdk::get_branches('/home/adrian/moodles/stable_master_postgres/moodle/');
     // echo '<pre>';
-    // print_r($instances);
+    // print_r($branches);
     // echo '</pre>';
+    // print_r(mdk::get_dbinfo('/home/adrian/moodles/stable_master_postgres/moodle/'));
 
 // with directory structure
     // $instances = get_moodle_instances('/home/adrian/moodles/');
@@ -31,6 +35,7 @@
         <a href="http://www.moodle.org"><img src="pics/moodle.jpg"></a>
         <br />
         <p><?php echo $version; ?><img src="pics/mdk-small.png"></p>
+        <p><a href="instance_create.php">Create a new mdk instance</a></p>
         <?php print_instances($instances); ?>
 		<!-- <h2>Stable</h2>
 		<ul>

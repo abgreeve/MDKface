@@ -36,6 +36,13 @@ class mdk {
         return $cmdoutput;
     }
 
+    /**
+     * I don't recommend using this function.
+     */
+    function execute_command($command) {
+        exec($command);
+    }
+
     static function get_version() {
         return self::run_command('mdk -v');
     }
@@ -105,6 +112,7 @@ class mdk {
         if (!empty($install)) {
             $cmd .= '--install ';
         }
-        return self::run_command($cmd);
+        return self::execute_command($cmd);
+        // return self::run_command($cmd);
     }
 }
