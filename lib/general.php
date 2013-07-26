@@ -16,5 +16,24 @@ function not_instance($directoryentry) {
     return true;
 }
 
-
+function print_instances($instances) {
+    echo '<h2>Stable</h2>';
+    echo '<ul>';
+    foreach ($instances as $instance) {
+        if (stripos($instance, 'stable') !== false) {
+            $url = 'http://adrian.moodle.local/' . $instance;
+            echo '<li><a href="' . $url . '">' . $instance . '</a></li>';
+        }
+    }
+    echo '</ul>';
+    echo '<h2>Integration</h2>';
+    echo '<ul>';
+    foreach ($instances as $instance) {
+        if (stripos($instance, 'integration') !== false) {
+            $url = 'http://adrian.moodle.local/' . $instance;
+            echo '<li><a href="' . $url . '">' . $instance . '</a></li>';
+        }
+    }
+    echo '</ul>';
+}
 

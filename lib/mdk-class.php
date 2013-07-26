@@ -27,27 +27,35 @@ class mdk {
         return $cmdoutput;
     }
 
-    function get_version() {
+    static function get_version() {
         return self::run_command('mdk -v');
     }
 
-    function get_status($branchlocation) {
+    static function get_status($branchlocation) {
         return self::run_command('git status', $branchlocation);
     }
 
-    function get_branches($branchlocation) {
+    static function get_branches($branchlocation) {
         $rawbranches = self::run_command('git branch', $branchlocation);
         $branches = explode(' ', $rawbranches);
         $branches = array_filter($branches);
         return $branches;
     }
 
-    function change_branch($name, $location) {
+    static function change_branch($name, $location) {
         $cmd = 'git checkout ' . $name;
         $notused = self::run_command($cmd, $location);
     }
 
-    function get_moodle_instances() {
-        return self::run_command('mdk info --list');
+    static function get_moodle_instances() {
+        $instances = array();
+        $rawdata = self::run_command('mdk info --list');
+        $instances = explode("\n", $rawdata);
+        foreach ($instances as $key => $value) {
+            $instance = explode(' ', $value, 2);
+            $instances[$key] = $instance[0];
+        }
+        $instances = array_filter($instances);
+        return $instances;
     }
 }

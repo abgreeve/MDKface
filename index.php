@@ -3,15 +3,21 @@
     include '/home/adrian/moodles/web/lib/mdk-class.php';
     include '/home/adrian/moodles/web/lib/general.php';
 
-    $mdk = new mdk();
-    $version = $mdk->get_version();
+    // $mdk = new mdk();
+    $version = mdk::get_version();
 
-    $instances = $mdk->get_moodle_instances();
-    echo '<pre>';
-    print_r($instances);
-    echo '</pre>';
-    // $output = $mdk->run_command('mdk info', '/home/adrian/moodles/stable_master_postgres/moodle/');
-    // echo nl2br($output);
+
+// with mdk:
+    $instances = mdk::get_moodle_instances();
+    // echo '<pre>';
+    // print_r($instances);
+    // echo '</pre>';
+
+// with directory structure
+    // $instances = get_moodle_instances('/home/adrian/moodles/');
+    // echo '<pre>';
+    // print_r($instances);
+    // echo '</pre>';
 
 
 
@@ -25,7 +31,8 @@
         <a href="http://www.moodle.org"><img src="pics/moodle.jpg"></a>
         <br />
         <p><?php echo $version; ?><img src="pics/mdk-small.png"></p>
-		<h2>Stable</h2>
+        <?php print_instances($instances); ?>
+		<!-- <h2>Stable</h2>
 		<ul>
 			<li><a href="http://adrian.moodle.local/stable_master_postgres/">Stable Master (Postgres)</a> <a href="info/view.php">Info page</a></li>
 			<li><a href="http://adrian.moodle.local/stable_25_postgres/">Stable 25 (Postgres)</a></li>
@@ -64,7 +71,7 @@
                     </ul>
                 </td>
             </tr>
-        </table>
+        </table> -->
         <h2>Other</h2>
         <table>
             <tr>
