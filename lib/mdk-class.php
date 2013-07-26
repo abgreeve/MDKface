@@ -13,12 +13,17 @@ class mdk {
         $descriptorspec = array();
         $descriptorspec[] = array('pipe', 'r');
         $descriptorspec[] = array('pipe', 'w');
-        $descriptorspec[] = array('file', '/home/adrian/moodles/web/error-output.txt', 'a');
+        $descriptorspec[] = array('file', './error-output.txt', 'a');
         $resource = proc_open($command, $descriptorspec, $pipes, $dir);
 
         $cmdoutput = null;
         if (is_resource($resource)) {
+            // echo 'I get here!';
             $cmdoutput = stream_get_contents($pipes[1]);
+            // echo 'output: ' .  $cmdoutput . '<br />';
+            // foreach ($pipes as $key => $value) {
+            //     echo stream_get_contents($value);
+            // }
         }
 
         foreach ($pipes as $pipe) {
@@ -41,7 +46,17 @@ class mdk {
 
     static function get_branches($branchlocation) {
         $rawbranches = self::run_command('git branch', $branchlocation);
-        $branches = explode(' ', $rawbranches);
+        $branches = explode("\n", $rawbranches);
+        $i = 1;
+        foreach ($branches as $key => $value) {
+            if (stripos($value, '*') !== false) {
+                unset($branches[$key]);
+                $branches['0'] = trim($value, '* ');
+            } else {
+                $branches[$i] = trim($value);
+                $i++;
+            }
+        }
         $branches = array_filter($branches);
         return $branches;
     }
@@ -68,8 +83,28 @@ class mdk {
         $databaseinfo = array();
         foreach ($databasevars as $value) {
             $command = 'mdk info --var ' . $value;
-            $databaseinfo[$value] = self::run_command($command, $instancelocation);
+            $databaseinfo[$value] = trim(self::run_command($command, $instancelocation));
         }
         return $databaseinfo;
+    }
+
+    static function create_instance($engine, $install, $integration, $suffix, $version) {
+        $cmd = 'mdk create ';
+        if (!empty($engine)) {
+            $cmd .= '--engine '. $engine . ' ';
+        }
+        if (!empty($integration)) {
+            $cmd .= '--integration ';
+        }
+        if (!empty($suffix)) {
+            $cmd .= '--suffix '. $suffix . ' ';
+        }
+        if (!empty($version)) {
+            $cmd .= '--version '. $version . ' ';
+        }
+        if (!empty($install)) {
+            $cmd .= '--install ';
+        }
+        return self::run_command($cmd);
     }
 }
